@@ -5,602 +5,610 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gran Tesoro – Vente de Boosters One Piece en Direct</title>
 
+  <!-- Fonts (pro, cohérent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg-dark: #0b0e14;
-      --bg-section: #111522;
-      --text-main: #f5f5f5;
-      --text-muted: #b6b6b6;
-      --red-live: #d62828;
-      --accent: #e9c46a;
+    :root{
+      --bg: #0b0e14;
+      --bg2:#070a10;
+      --panel: rgba(255,255,255,.045);
+      --panel2: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.12);
+      --stroke2: rgba(255,255,255,.18);
+
+      --text: #f5f5f5;
+      --muted: rgba(245,245,245,.68);
+
+      --gold: #e9c46a;
+      --gold2:#caa64b;
+      --goldGlow: rgba(233,196,106,.35);
+
+      --red: #d62828;
+      --red2:#8e1f1f;
+
+      --radius: 22px;
+      --radius2: 16px;
+
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --shadow2: 0 14px 35px rgba(0,0,0,.45);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background: radial-gradient(circle at top, rgba(233,196,106,.10), transparent 45%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
     }
 
-    body {
-      background: var(--bg-dark);
-      color: var(--text-main);
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    /* Poussière d’étoiles subtile (global, harmonieux) */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.12;
+    /* Star dust global (plus subtil + premium) */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.10;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(233,196,106,0.8) 1px, transparent 1.8px),
-        radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1.6px);
-      background-size: 140px 140px, 220px 220px, 320px 320px;
-      background-position: 0 0, 60px 90px, 120px 40px;
-      filter: blur(0.2px);
-      animation: stardrift 14s linear infinite;
+        radial-gradient(circle, rgba(255,255,255,.85) 1px, transparent 1.6px),
+        radial-gradient(circle, rgba(233,196,106,.65) 1px, transparent 1.9px),
+        radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.7px);
+      background-size: 180px 180px, 260px 260px, 360px 360px;
+      background-position: 0 0, 80px 120px, 150px 60px;
+      filter: blur(.2px);
+      animation: stardrift 18s linear infinite;
+    }
+    @keyframes stardrift{
+      0%{transform:translate3d(0,0,0)}
+      100%{transform:translate3d(-90px,140px,0)}
     }
 
-    @keyframes stardrift {
-      0%   { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-80px, 120px, 0); }
+    section{
+      position:relative;
+      z-index:1;
+      min-height:100vh;
+      padding: 90px 8vw;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 28px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
     }
 
-    section {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      padding: 80px 8vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    /* =========================
-       TITRES / INTRO (GLOBAL)
-       ========================= */
-
-    section h2 {
-      font-size: clamp(2.2rem, 5vw, 3rem);
+    /* Headings */
+    .display-title{
+      font-family: Cinzel, serif;
+      letter-spacing: .04em;
       font-weight: 800;
-      text-align: center;
-      letter-spacing: 0.03em;
     }
 
-    .section-intro,
-    .battle-intro {
-      text-align: center;
-      font-size: 1.3rem;
-      color: var(--accent);
-      max-width: 900px;
-      margin: 0 auto 20px;
-      line-height: 1.6;
+    section h2{
+      font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+      text-align:center;
+      font-weight: 900;
+    }
+
+    .section-lead{
+      max-width: 980px;
+      margin: 0 auto;
+      text-align:center;
+      color: var(--gold);
       font-weight: 650;
+      line-height: 1.65;
+      font-size: 1.15rem;
     }
 
-    .battle-intro span {
-      color: var(--text-main);
-      font-weight: 520;
-    }
-
-    /* =========================
-       BOUTONS (GLOBAL)
-       ========================= */
-
-    .cta-group {
-      margin-top: 48px;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 16px 28px;
-      font-size: 1rem;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 750;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .btn-live {
-      background: var(--red-live);
-      color: white;
-      box-shadow: 0 0 24px rgba(214, 40, 40, 0.45);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.02);
-      color: var(--text-main);
-      border: 2px solid rgba(255,255,255,0.16);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 32px rgba(233,196,106,0.28);
-      border-color: rgba(233,196,106,0.35);
-    }
-
-    /* =========================
-       CARTES / GRILLES (GLOBAL)
-       ========================= */
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
+    /* Buttons */
+    .cta-group{
+      display:flex;
+      gap: 18px;
+      justify-content:center;
+      flex-wrap:wrap;
       margin-top: 10px;
     }
-
-    .info-card,
-    .concept-card,
-    .battle-card,
-    .flow-card,
-    .mystery-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 28px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(233,196,106,0.08);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-      backdrop-filter: blur(6px);
+    .btn{
+      padding: 16px 26px;
+      border-radius: 14px;
+      text-decoration:none;
+      font-weight: 850;
+      letter-spacing: .02em;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(233,196,106,.28);
+      box-shadow: 0 0 40px rgba(233,196,106,.18);
+      background: rgba(255,255,255,.05);
+    }
+    .btn-live{
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 14px 40px rgba(214,40,40,.25);
+    }
+    .btn-live:hover{
+      box-shadow: 0 18px 55px rgba(214,40,40,.30), 0 0 40px rgba(233,196,106,.12);
     }
 
-    .info-card:hover,
-    .concept-card:hover,
-    .battle-card:hover,
-    .flow-card:hover,
-    .mystery-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 45px rgba(233,196,106,0.28);
-      border-color: rgba(233,196,106,0.22);
+    /* Chips nav in hero */
+    .chip-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow: 0 0 26px rgba(233,196,106,.08);
+    }
+    .chip:hover{
+      transform: translateY(-2px);
+      border-color: rgba(233,196,106,.28);
+      box-shadow: 0 0 44px rgba(233,196,106,.18);
+    }
+    .chip .chip-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 14px rgba(233,196,106,.6);
     }
 
-    .info-card span {
-      font-size: 2.4rem;
-      margin-bottom: 12px;
-      display: block;
+    /* Panel (reusable) */
+    .frame{
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 58px 4.5vw;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(10,12,18,.30);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .frame::before{
+      content:"";
+      position:absolute; inset:-60px;
+      pointer-events:none;
+      opacity:.18;
+      background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 2px, transparent 2px 12px),
+        radial-gradient(circle, rgba(255,255,255,.08) 0 1px, transparent 2px);
+      background-size: 320px 320px, 140px 140px;
     }
 
-    .info-card p,
-    .concept-card p {
-      color: var(--text-muted);
-      line-height: 1.55;
-      font-size: 1rem;
+    /* Icons (SVG) */
+    .icon{
+      width: 22px;
+      height: 22px;
+      display:inline-block;
+      vertical-align: middle;
+      color: var(--gold);
+      filter: drop-shadow(0 0 10px rgba(233,196,106,.18));
     }
-
-    .info-card strong,
-    .concept-card strong {
-      color: var(--text-main);
-    }
-
-    .highlight {
-      border-color: rgba(233,196,106,0.45);
-      box-shadow: 0 0 40px rgba(233,196,106,0.18);
-    }
-
-    .reward {
-      border-color: rgba(214, 40, 40, 0.38);
-      box-shadow: 0 0 40px rgba(214,40,40,0.14);
+    .icon.purple{ color: #a78bfa; }
+    .icon.red{ color: #ff4d4d; }
+    .icon.white{ color: rgba(245,245,245,.9); }
+    .icon.big{
+      width: 56px;
+      height: 56px;
+      filter: drop-shadow(0 0 18px rgba(233,196,106,.25));
     }
 
     /* =========================
        SECTION 1 – HERO
        ========================= */
-
-    .hero {
-      min-height: 90vh;
-      padding: 120px 20px 80px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    .hero{
+      min-height: 92vh;
+      padding: 120px 8vw 90px;
       background:
-        radial-gradient(circle at top, rgba(233,196,106,0.18), transparent 60%),
+        radial-gradient(circle at top, rgba(233,196,106,.18), transparent 52%),
         linear-gradient(180deg, #0b0e14, #05070c);
-      color: var(--text-main);
+      text-align:center;
     }
 
-    .hero h1 {
-      font-size: clamp(2.6rem, 5vw, 4rem);
-      font-weight: 950;
-      letter-spacing: 0.05em;
-      max-width: 980px;
+    .hero h1{
+      font-size: clamp(2.8rem, 5vw, 4.3rem);
+      font-weight: 900;
+      margin-bottom: 8px;
     }
-
-    .hero-highlight {
-      display: flex;
-      gap: 20px;
-      margin-top: 28px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .hero-highlight span {
-      padding: 12px 22px;
-      border-radius: 999px;
+    .brandline{
+      font-family: Cinzel, serif;
       font-weight: 800;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: var(--accent);
-      box-shadow: 0 0 20px rgba(233,196,106,0.12);
+      letter-spacing: .06em;
+      color: rgba(245,245,245,.95);
+      text-shadow: 0 20px 60px rgba(0,0,0,.7);
     }
-
-    .hero-subtitle {
-      margin-top: 36px;
-      font-size: 1.5rem;
-      line-height: 1.45;
-      max-width: 720px;
-      color: var(--text-main);
+    .hero-sub{
+      margin: 18px auto 6px;
+      max-width: 880px;
+      font-size: 1.35rem;
+      line-height: 1.55;
+      color: rgba(245,245,245,.88);
       font-weight: 650;
     }
 
     /* =========================
-       SECTION 2 – BATTLE 1v1 (Premium, VS animé)
+       SECTION 2 – BATTLE
        ========================= */
-
-    .battle {
-      position: relative;
-      text-align: center;
-      overflow: hidden;
+    .battle{
       background:
-        radial-gradient(circle at 50% 25%, rgba(233,196,106,0.14), transparent 55%),
-        radial-gradient(circle at 50% 45%, rgba(27,33,56,0.85), rgba(11,14,20,0.96) 62%),
-        linear-gradient(180deg, #0b0e14, #06080d);
+        radial-gradient(circle at 50% 25%, rgba(233,196,106,.14), transparent 55%),
+        linear-gradient(180deg, #0b0e14, #070a10);
     }
 
-    /* Texture + poussière (subtile, harmonieuse) */
-    .battle::before {
-      content: "";
-      position: absolute;
-      inset: -40px;
-      background:
-        repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 10px),
-        radial-gradient(circle, rgba(255,255,255,0.07) 0 1px, transparent 2px);
-      background-size: 260px 260px, 120px 120px;
-      opacity: 0.18;
-      pointer-events: none;
+    .section-title-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 14px;
+      margin-bottom: 6px;
     }
-
-    .battle-frame {
-      position: relative;
-      padding: 56px 4vw 70px;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 22px;
-      background: rgba(10,12,18,0.28);
-      box-shadow: 0 0 60px rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      max-width: 1250px;
-      margin: 0 auto;
-    }
-
-    .battle-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      font-weight: 950;
-      letter-spacing: 0.02em;
-      margin-bottom: 10px;
-    }
-
-    .battle-title::before,
-    .battle-title::after {
-      content: "";
+    .section-title-row .line{
       height: 2px;
-      width: clamp(80px, 12vw, 160px);
-      background: linear-gradient(90deg, transparent, rgba(233,196,106,0.85), transparent);
-      opacity: 0.9;
+      width: clamp(90px, 16vw, 200px);
+      background: linear-gradient(90deg, transparent, rgba(233,196,106,.85), transparent);
+      opacity:.9;
     }
 
-    .battle-top {
-      display: grid;
+    .battle-grid{
+      display:grid;
       grid-template-columns: 1fr auto 1fr;
-      align-items: center;
+      align-items:center;
       gap: 28px;
-      max-width: 1100px;
-      margin: 0 auto;
+      margin-top: 18px;
     }
 
-    .battle-card {
-      padding: 0;
-      overflow: hidden;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.06);
-      box-shadow: 0 0 35px rgba(0,0,0,0.45);
+    .card{
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
-
-    .battle-card .card-head {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+    .card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(233,196,106,.28);
+      box-shadow: 0 22px 50px rgba(0,0,0,.55), 0 0 44px rgba(233,196,106,.14);
+    }
+    .card-head{
       padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
       font-weight: 900;
-      color: var(--accent);
-      text-shadow: 0 2px 10px rgba(0,0,0,0.55);
+      color: var(--gold);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      text-shadow: 0 2px 10px rgba(0,0,0,.55);
     }
-
-    .battle-card .card-body {
+    .card-body{
       padding: 18px 18px 22px;
+      text-align:center;
     }
-
-    .battle-card .buy {
+    .buy{
       font-size: 1.35rem;
       font-weight: 950;
-      color: var(--text-main);
-      margin-bottom: 14px;
+      margin: 6px 0 14px;
     }
 
-    /* Booster image réel (fichiers à la racine du repo) */
+    /* Booster images */
     .booster-img{
-      width: 120px;
-      height: auto;
-      display: block;
+      width: 170px;
+      height:auto;
+      display:block;
       margin: 0 auto;
-      border-radius: 12px;
-      box-shadow: 0 18px 28px rgba(0,0,0,0.55);
-      border: 1px solid rgba(255,255,255,0.12);
-      transform: rotate(-6deg);
-      transition: transform 0.25s ease, filter 0.25s ease;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow:
+        0 26px 45px rgba(0,0,0,.65),
+        0 0 34px rgba(233,196,106,.22);
+      transform: translateY(0);
+      transition: transform .28s ease, filter .28s ease, box-shadow .28s ease;
+    }
+    .card:hover .booster-img{
+      transform: translateY(-3px) scale(1.06);
+      filter: brightness(1.06);
+      box-shadow:
+        0 34px 60px rgba(0,0,0,.72),
+        0 0 50px rgba(233,196,106,.34);
     }
 
-    .battle-card:hover .booster-img{
-      transform: rotate(-3deg) scale(1.03);
-      filter: brightness(1.05);
+    .tag{
+      margin-top: 12px;
+      color: rgba(245,245,245,.70);
+      font-weight: 700;
+      letter-spacing:.01em;
     }
 
-    .booster-tag {
-      margin-top: 10px;
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.70);
-      font-weight: 650;
-    }
-
-    /* VS premium + animation */
-    .vs {
-      position: relative;
-      font-size: clamp(3rem, 5vw, 4.2rem);
+    /* VS */
+    .vs{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width: 110px;
+      height: 110px;
+      border-radius: 26px;
+      background: radial-gradient(circle at 50% 35%, rgba(233,196,106,.20), rgba(0,0,0,0));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 0 50px rgba(233,196,106,.16);
       font-weight: 1000;
+      font-size: 3.2rem;
       color: #f6e6b6;
-      text-shadow:
-        0 0 18px rgba(233,196,106,0.45),
-        0 10px 30px rgba(0,0,0,0.7);
-      padding: 10px 18px;
-      border-radius: 16px;
-      background: radial-gradient(circle at 50% 35%, rgba(233,196,106,0.18), rgba(0,0,0,0));
+      text-shadow: 0 0 20px rgba(233,196,106,.45), 0 10px 30px rgba(0,0,0,.75);
       animation: vsPulse 1.6s ease-in-out infinite;
-      user-select: none;
+      user-select:none;
+    }
+    @keyframes vsPulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.06)}
     }
 
-    .vs::after {
-      content: "";
-      position: absolute;
-      inset: -18px;
-      border-radius: 22px;
-      background: radial-gradient(circle, rgba(233,196,106,0.14), transparent 60%);
-      filter: blur(6px);
-      opacity: 0.95;
-      z-index: -1;
-    }
-
-    @keyframes vsPulse {
-      0%,100% { transform: scale(1) translateY(0); filter: brightness(1); }
-      50%     { transform: scale(1.06) translateY(-2px); filter: brightness(1.12); }
-    }
-
-    .battle-flow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Battle flow */
+    .flow{
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
       gap: 18px;
-      margin-top: 48px;
-      flex-wrap: wrap;
+      margin-top: 44px;
+      flex-wrap:wrap;
+    }
+    .step{
+      min-width: 270px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      padding: 20px 18px;
+      text-align:center;
+      font-weight: 900;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 12px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .step:hover{
+      transform: translateY(-4px);
+      border-color: rgba(233,196,106,.26);
+      box-shadow: 0 22px 55px rgba(0,0,0,.58), 0 0 44px rgba(233,196,106,.14);
+    }
+    .step .label{
+      font-size: 1.05rem;
+      color: rgba(245,245,245,.92);
+      letter-spacing:.01em;
     }
 
-    .flow-card {
-      min-width: 260px;
-      padding: 26px 22px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.16);
-      box-shadow: 0 0 32px rgba(0,0,0,0.45);
-      font-size: 1.15rem;
-      font-weight: 950;
-      color: var(--text-main);
-      text-shadow: 0 2px 10px rgba(0,0,0,0.55);
-    }
-
-    .flow-card.highlight {
-      background: linear-gradient(135deg, #e9c46a, #caa64b);
+    /* BIG + IMPOSANT : VICTOIRE */
+    .step.win{
+      background: linear-gradient(135deg, rgba(233,196,106,.92), rgba(202,166,75,.92));
       color: #141414;
-      text-shadow: none;
-      box-shadow: 0 0 45px rgba(233,196,106,0.30);
-      border-color: rgba(233,196,106,0.45);
+      border-color: rgba(233,196,106,.55);
+      box-shadow: 0 24px 70px rgba(233,196,106,.20), 0 10px 40px rgba(0,0,0,.55);
+    }
+    .step.win .label{ color:#141414; font-size:1.12rem; }
+    .step.win .bigtext{
+      font-size: 1.25rem;
+      font-weight: 1000;
+      letter-spacing:.02em;
     }
 
-    .flow-card.reward {
-      background: linear-gradient(135deg, #b12b2b, #6f1414);
-      color: #fff;
-      box-shadow: 0 0 45px rgba(214,40,40,0.24);
-      border-color: rgba(214,40,40,0.40);
+    /* BIG + IMPOSANT : RÉCOMPENSE */
+    .step.reward{
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 24px 70px rgba(214,40,40,.18), 0 10px 40px rgba(0,0,0,.55);
+    }
+    .step.reward .label{
+      font-size:1.12rem;
+      font-weight: 950;
     }
 
-    /* Flèche “dorée” animée */
-    .arrow {
-      width: 66px;
+    .arrow{
+      width: 74px;
       height: 6px;
       border-radius: 99px;
-      background: linear-gradient(90deg, transparent, rgba(233,196,106,0.95), transparent);
-      position: relative;
-      opacity: 0.95;
+      align-self:center;
+      background: linear-gradient(90deg, transparent, rgba(233,196,106,.95), transparent);
+      position:relative;
+      opacity:.95;
       animation: arrowGlow 1.2s ease-in-out infinite;
       flex: 0 0 auto;
+      margin-top: 6px;
     }
-
-    .arrow::after {
-      content: "";
-      position: absolute;
-      right: -2px;
-      top: -7px;
-      width: 0;
-      height: 0;
-      border-left: 14px solid rgba(233,196,106,0.95);
+    .arrow::after{
+      content:"";
+      position:absolute;
+      right:-2px;
+      top:-7px;
+      width:0;height:0;
+      border-left: 14px solid rgba(233,196,106,.95);
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
     }
-
-    @keyframes arrowGlow {
-      0%,100% { filter: brightness(1); transform: translateX(0); }
-      50%     { filter: brightness(1.18); transform: translateX(3px); }
+    @keyframes arrowGlow{
+      0%,100%{filter:brightness(1); transform:translateX(0)}
+      50%{filter:brightness(1.18); transform:translateX(3px)}
     }
 
-    .battle-footer {
-      margin-top: 26px;
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.70);
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 900px) {
-      .battle-top { grid-template-columns: 1fr; }
-      .vs { margin: 10px auto; }
-    }
-
-    @media (max-width: 768px) {
-      .battle-flow { flex-direction: column; }
-      .arrow { transform: rotate(90deg); margin: 6px auto; }
+    .footnote{
+      margin-top: 18px;
+      text-align:center;
+      color: rgba(245,245,245,.68);
+      font-weight: 650;
+      letter-spacing:.02em;
     }
 
     /* =========================
-       SECTION 3 – MYSTERY PACKS (CONTENU ÉVIDENT)
+       SECTION 3 – MYSTERY
        ========================= */
-
-    .mystery {
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    .mystery{
       background:
-        radial-gradient(circle at 50% 30%, rgba(233,196,106,0.10), transparent 55%),
-        radial-gradient(circle at center, rgba(27,33,56,0.90), var(--bg-dark));
+        radial-gradient(circle at 50% 25%, rgba(233,196,106,.12), transparent 56%),
+        linear-gradient(180deg, #0b0e14, #070a10);
+      text-align:center;
     }
 
-    .mystery-flow {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
+    .mystery-row{
+      display:flex;
+      justify-content:center;
       gap: 18px;
-      flex-wrap: wrap;
-      margin-top: 10px;
+      flex-wrap:wrap;
+      margin-top: 22px;
+      align-items:stretch;
     }
 
-    .mystery-card {
-      width: min(320px, 92vw);
-      padding: 26px 22px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: 0 0 34px rgba(0,0,0,0.45);
+    .mcard{
+      width: min(340px, 92vw);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      padding: 22px 20px;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      justify-content:center;
     }
-
-    .mystery-card .m-icon {
-      font-size: 2.4rem;
-      margin-bottom: 10px;
-      display: block;
+    .mcard:hover{
+      transform: translateY(-4px);
+      border-color: rgba(233,196,106,.26);
+      box-shadow: 0 22px 55px rgba(0,0,0,.58), 0 0 44px rgba(233,196,106,.14);
     }
+    .mcard h3{
+      color: var(--gold);
+      font-weight: 950;
+      font-size: 1.2rem;
+    }
+    .mcard p{
+      color: var(--muted);
+      line-height:1.6;
+      font-weight: 550;
+    }
+    .mcard strong{color:rgba(245,245,245,.92)}
 
-    .mystery-card h3 {
-      font-size: 1.25rem;
+    .connector{
+      display:flex;
+      align-items:center;
+      justify-content:center;
       font-weight: 1000;
-      margin-bottom: 6px;
-      color: var(--accent);
-    }
-
-    .mystery-card p {
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    .mystery-connector {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 1000;
-      font-size: 2.2rem;
-      color: rgba(233,196,106,0.95);
-      text-shadow: 0 0 18px rgba(233,196,106,0.30);
-      padding: 0 6px;
-      user-select: none;
-    }
-
-    .mystery-connector.arrowlike {
       font-size: 2.4rem;
-      animation: arrowGlow 1.2s ease-in-out infinite;
+      color: rgba(233,196,106,.95);
+      text-shadow: 0 0 18px rgba(233,196,106,.30);
+      user-select:none;
+      padding: 0 8px;
     }
 
     /* =========================
-       SECTION 4 – CONCEPT
+       SECTION 4 – GARANTIES
        ========================= */
+    .concept{
+      background:
+        radial-gradient(circle at 50% 25%, rgba(233,196,106,.10), transparent 58%),
+        linear-gradient(180deg, #0b0e14, #070a10);
+      text-align:center;
+    }
 
-    .concept {
-      background: var(--bg-section);
+    .grid{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      max-width: 1120px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .gcard{
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      padding: 22px 20px;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .gcard:hover{
+      transform: translateY(-4px);
+      border-color: rgba(233,196,106,.24);
+      box-shadow: 0 22px 55px rgba(0,0,0,.58), 0 0 44px rgba(233,196,106,.12);
+    }
+    .gcard h3{
+      margin-top: 10px;
+      font-weight: 950;
+      color: rgba(245,245,245,.95);
+    }
+    .gcard p{
+      margin-top: 8px;
+      color: var(--muted);
+      line-height:1.6;
+      font-weight: 550;
     }
 
     /* =========================
        SECTION 5 – SOCIAL + FOOTER
        ========================= */
-
-    .social {
-      text-align: center;
+    .social{
       background: linear-gradient(180deg, #0b0e14, #07090f);
+      text-align:center;
+    }
+    .social-buttons{
+      display:flex;
+      justify-content:center;
+      gap: 18px;
+      flex-wrap:wrap;
+      margin-top: 10px;
     }
 
-    .social-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 24px;
+    footer{
+      background:#07090f;
+      padding: 30px 8vw;
+      text-align:center;
+      color: rgba(245,245,245,.62);
+      font-size:.92rem;
+      border-top: 1px solid rgba(255,255,255,.05);
     }
-
-    footer {
-      position: relative;
-      z-index: 1;
-      background: #07090f;
-      padding: 32px 8vw;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: var(--text-main);
-      text-decoration: none;
+    footer a{
+      color: rgba(245,245,245,.85);
+      text-decoration:none;
       margin: 0 8px;
     }
+    footer a:hover{ color: var(--gold); }
 
-    footer a:hover {
-      color: var(--accent);
+    /* Responsive */
+    @media (max-width: 900px){
+      .battle-grid{ grid-template-columns: 1fr; }
+      .vs{ margin: 8px auto; }
+    }
+    @media (max-width: 768px){
+      .flow{ flex-direction:column; }
+      .arrow{ transform: rotate(90deg); margin: 6px auto; }
+      .step{ min-width: min(420px, 92vw); }
     }
   </style>
 </head>
@@ -608,177 +616,234 @@
 <body>
 
   <!-- SECTION 1 -->
-  <section class="hero" id="live">
-    <h1>✨GranTesoro✨</h1>
+  <section class="hero" id="home">
+    <h1 class="brandline">GranTesoro</h1>
 
-    <div class="hero-highlight">
-      <span>⚔️ Battles 1v1</span>
-      <span>🎁 Mystery Packs</span>
-      <span>🔴 Ouvertures en live</span>
+    <div class="chip-row" aria-label="Navigation sections">
+      <a class="chip" href="#battle">
+        <span class="chip-dot"></span>
+        Battle 1v1
+      </a>
+      <a class="chip" href="#mystery">
+        <span class="chip-dot"></span>
+        Mystery Packs
+      </a>
+      <a class="chip" href="#concept">
+        <span class="chip-dot"></span>
+        Nos Garanties
+      </a>
     </div>
 
-    <p class="hero-subtitle">
-      Découvrez les concepts Gran Tesoro <br>
-      en live sur Whatnot !
+    <p class="hero-sub">
+      Découvrez les concepts Gran Tesoro en live sur Whatnot.
+      <br>Transparence, règles claires, et duels premium.
     </p>
 
     <div class="cta-group">
-      <a href="https://whatnot.com/s/NtBilMbE"
-         class="btn btn-live"
-         target="_blank"
-         rel="noopener">
-        🔴 PARTICIPER AU LIVE
+      <a class="btn btn-live" href="https://whatnot.com/s/NtBilMbE" target="_blank" rel="noopener">
+        <!-- Live icon -->
+        <svg class="icon red" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <circle cx="12" cy="12" r="6"></circle>
+        </svg>
+        Participer au live
       </a>
 
-      <a href="https://whatnot.com/s/NtBilMbE"
-         class="btn btn-secondary"
-         target="_blank"
-         rel="noopener">
+      <a class="btn" href="https://whatnot.com/s/NtBilMbE" target="_blank" rel="noopener">
         Accéder à notre page
       </a>
     </div>
   </section>
 
   <!-- SECTION 2 -->
-  <section class="battle">
-    <div class="battle-frame">
+  <section class="battle" id="battle">
+    <div class="frame">
 
-      <h2 class="battle-title">⚔️ Battle 1v1 ⚔️</h2>
+      <div class="section-title-row">
+        <div class="line"></div>
+        <h2 class="display-title">
+          <!-- Swords icon -->
+          <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.3 20.7a1 1 0 0 0 1.4 0l4.1-4.1 1.3 1.3-2.5 2.5a1 1 0 1 0 1.4 1.4l2.5-2.5 1.3 1.3-4.1 4.1a1 1 0 0 0 1.4 1.4l4.1-4.1 1.3 1.3a1 1 0 0 0 1.4-1.4l-1.3-1.3 4.1-4.1a1 1 0 0 0 0-1.4l-3.2-3.2 1.9-1.9a3 3 0 0 0 0-4.2l-.3-.3a3 3 0 0 0-4.2 0L14.4 4.8 11.2 1.6a1 1 0 0 0-1.4 0L7.1 4.3a1 1 0 0 0 0 1.4l3.2 3.2-1.9 1.9-3.2-3.2a1 1 0 0 0-1.4 0L1.6 9.8a1 1 0 0 0 0 1.4l3.2 3.2-1.5 1.5a1 1 0 0 0 0 1.4l1.3 1.3-1.3 1.3a1 1 0 0 0 0 1.4z"/>
+          </svg>
+          Battle 1v1
+          <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.3 20.7a1 1 0 0 0 1.4 0l4.1-4.1 1.3 1.3-2.5 2.5a1 1 0 1 0 1.4 1.4l2.5-2.5 1.3 1.3-4.1 4.1a1 1 0 0 0 1.4 1.4l4.1-4.1 1.3 1.3a1 1 0 0 0 1.4-1.4l-1.3-1.3 4.1-4.1a1 1 0 0 0 0-1.4l-3.2-3.2 1.9-1.9a3 3 0 0 0 0-4.2l-.3-.3a3 3 0 0 0-4.2 0L14.4 4.8 11.2 1.6a1 1 0 0 0-1.4 0L7.1 4.3a1 1 0 0 0 0 1.4l3.2 3.2-1.9 1.9-3.2-3.2a1 1 0 0 0-1.4 0L1.6 9.8a1 1 0 0 0 0 1.4l3.2 3.2-1.5 1.5a1 1 0 0 0 0 1.4l1.3 1.3-1.3 1.3a1 1 0 0 0 0 1.4z"/>
+          </svg>
+        </h2>
+        <div class="line"></div>
+      </div>
 
-      <p class="battle-intro">
-        Venez vous affronter dans un <strong>duel d’ouverture</strong> afin de tenter d’emporter le trésor !
+      <p class="section-lead">
+        Venez vous affronter dans un <strong>duel d’ouverture</strong> afin de tenter d’emporter le trésor.
       </p>
 
-      <div class="battle-top">
-        <!-- JOUEUR A : OP-13 (Luffy) -->
-        <div class="battle-card">
-          <div class="card-head">👤 Joueur A</div>
+      <div class="battle-grid">
+        <!-- Joueur A -->
+        <div class="card">
+          <div class="card-head">
+            <!-- User icon -->
+            <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/>
+            </svg>
+            Joueur A
+          </div>
           <div class="card-body">
             <div class="buy">Achète 1 booster</div>
-
-           <img class="booster-img"
-     src="./booster-joueurA.png.jpg"
-     alt="Booster OP-13 Successeurs">
-            
-            <div class="booster-tag">Booster scellé</div>
+            <img class="booster-img" src="./booster-joueurA.png.webp" alt="Booster OP-13 Successeurs">
+            <div class="tag">Booster scellé</div>
           </div>
         </div>
 
         <div class="vs" aria-label="Versus">VS</div>
 
-        <!-- JOUEUR B : EB-03 (Heroines) -->
-        <div class="battle-card">
-          <div class="card-head">👤 Joueur B</div>
+        <!-- Joueur B -->
+        <div class="card">
+          <div class="card-head">
+            <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/>
+            </svg>
+            Joueur B
+          </div>
           <div class="card-body">
             <div class="buy">Achète 1 booster</div>
-
-            <img class="booster-img"
-     src="./booster-joueurB.png.jpg"
-     alt="Booster EB-03 Heroines">
-            
-           
-
-            <div class="booster-tag">Booster scellé</div>
+            <img class="booster-img" src="./booster-joueurB.png.webp" alt="Booster EB-03 Heroines">
+            <div class="tag">Booster scellé</div>
           </div>
         </div>
       </div>
 
-      <div class="battle-flow">
-        <div class="flow-card">📦<br>Ouverture en direct</div>
+      <div class="flow" aria-label="Déroulé du battle">
+        <div class="step">
+          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 8h-3V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h1v2h10v-2h1a4 4 0 0 0 4-4v-2a2 2 0 0 0-2-2zm-5 0H9V6h6z"/>
+          </svg>
+          <div class="label">Ouverture en direct</div>
+        </div>
+
         <div class="arrow" aria-hidden="true"></div>
-        <div class="flow-card highlight">🏆<br>Meilleure carte = VICTOIRE</div>
+
+        <div class="step win">
+          <svg class="icon big" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17 4h-1V2H8v2H7a2 2 0 0 0-2 2v3a5 5 0 0 0 4 4.9V17H7v2h10v-2h-2v-2.1A5 5 0 0 0 19 9V6a2 2 0 0 0-2-2zm-8 9.7A3 3 0 0 1 7 11V6h2zm10-2.7a3 3 0 0 1-2 2.7V6h2z"/>
+          </svg>
+          <div class="bigtext">Meilleure carte = VICTOIRE</div>
+          <div class="label">Le gagnant l’emporte.</div>
+        </div>
+
         <div class="arrow" aria-hidden="true"></div>
-        <div class="flow-card reward">🎁<br>Récupère ta récompense</div>
+
+        <div class="step reward">
+          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 7h-2.2A3 3 0 0 0 12 5.2 3 3 0 0 0 6.2 7H4a2 2 0 0 0-2 2v2h10V9h2v2h10V9a2 2 0 0 0-2-2zm-13.8 0a1.2 1.2 0 0 1 2.4 0zm8.2 0a1.2 1.2 0 0 1 2.4 0zM2 13v7a2 2 0 0 0 2 2h8v-9zm12 9h8a2 2 0 0 0 2-2v-7h-10z"/>
+          </svg>
+          <div class="label">Récupère ta récompense</div>
+        </div>
       </div>
 
-      <p class="battle-footer">
-        • Lot annoncé à l'avance •
-      </p>
+      <p class="footnote">• Lot annoncé à l’avance •</p>
 
     </div>
   </section>
 
   <!-- SECTION 3 -->
-  <section class="mystery">
-    <h2>🎴 Mystery Packs 🎴</h2>
+  <section class="mystery" id="mystery">
+    <div class="frame">
 
-    <p class="battle-intro">
-      Plongez dans l’univers des Mystery Packs et tentez de découvrir des cartes rares, exclusives ou recherchées.
-    </p>
-
-    <p class="battle-intro">
-      <strong>Contenu d’un Mystery Pack :</strong><br>
-    </p>
-
-    <div class="mystery-flow">
-      <div class="mystery-card">
-        <span class="m-icon">📦</span>
-        <h3>Booster officiel</h3>
-        <p>Issu d’une display scellée.</p>
+      <div class="section-title-row">
+        <div class="line"></div>
+        <h2 class="display-title">Mystery Packs</h2>
+        <div class="line"></div>
       </div>
 
-      <div class="mystery-connector" aria-hidden="true">+</div>
+      <p class="section-lead">
+        Plongez dans l’univers des Mystery Packs et tentez de découvrir des cartes rares, exclusives ou recherchées.
+      </p>
 
-      <div class="mystery-card highlight">
-        <span class="m-icon">💥</span>
-        <h3>Booster maison</h3>
-        <p>
-          <strong style="color:var(--text-main);">33% de chance de HIT minimum</strong><br>
-        </p>
+      <p class="section-lead" style="margin-top:-6px; color: rgba(233,196,106,.95);">
+        <strong>Contenu d’un Mystery Pack :</strong>
+      </p>
+
+      <div class="mystery-row">
+        <div class="mcard">
+          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
+            <path d="M20 8h-3V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h1v2h10v-2h1a4 4 0 0 0 4-4v-2a2 2 0 0 0-2-2zm-5 0H9V6h6z"/>
+          </svg>
+          <h3>Booster officiel</h3>
+          <p>Issu d’une display scellée.</p>
+        </div>
+
+        <div class="connector" aria-hidden="true">+</div>
+
+        <div class="mcard">
+          <svg class="icon big" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
+            <path d="M12 2l1.6 6.2L20 6l-3.8 4.7L22 12l-5.8 1.3L20 18l-6.4-2.2L12 22l-1.6-6.2L4 18l3.8-4.7L2 12l5.8-1.3L4 6l6.4 2.2z"/>
+          </svg>
+          <h3>Booster maison</h3>
+          <p><strong>33% de chance de HIT minimum</strong></p>
+        </div>
+
+        <div class="connector" aria-hidden="true">→</div>
+
+        <div class="mcard">
+          <svg class="icon big red" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
+            <circle cx="12" cy="12" r="6"></circle>
+          </svg>
+          <h3>Ouverture en live</h3>
+          <p>Tout est ouvert en direct, sous vos yeux.</p>
+        </div>
       </div>
 
-      <div class="mystery-connector arrowlike" aria-hidden="true">→</div>
-
-      <div class="mystery-card reward">
-        <span class="m-icon">🔴</span>
-        <h3>Ouverture en live</h3>
-        <p>Tout est ouvert en direct, sous vos yeux.</p>
-      </div>
     </div>
   </section>
 
   <!-- SECTION 4 -->
-  <section class="concept">
-    <h2> Nos Garanties </h2>
-
-    <p class="section-intro">
-      Des ouvertures en live, des règles claires et une transparence totale.
-    </p>
-
-    <div class="info-grid">
-      <div class="info-card">
-        <span>📦</span>
-        <p>
-          <strong>Boosters officiels</strong><br>
-          Issus exclusivement de displays scellées
-        </p>
+  <section class="concept" id="concept">
+    <div class="frame">
+      <div class="section-title-row">
+        <div class="line"></div>
+        <h2 class="display-title">Nos Garanties</h2>
+        <div class="line"></div>
       </div>
 
-      <div class="info-card">
-        <span>🔴</span>
-        <p>
-          <strong>Ouverture en live</strong><br>
-          Tout est ouvert en direct, sans montage
-        </p>
-      </div>
+      <p class="section-lead">
+        Des ouvertures en live, des règles claires et une transparence totale.
+      </p>
 
-      <div class="info-card">
-        <span>🛡️</span>
-        <p>
-          <strong>Transparence totale</strong><br>
-          Preuve d'achat sur demande.
-        </p>
+      <div class="grid">
+        <div class="gcard">
+          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
+            <path d="M20 8h-3V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h1v2h10v-2h1a4 4 0 0 0 4-4v-2a2 2 0 0 0-2-2zm-5 0H9V6h6z"/>
+          </svg>
+          <h3>Boosters officiels</h3>
+          <p>Issus exclusivement de displays scellées.</p>
+        </div>
+
+        <div class="gcard">
+          <svg class="icon big red" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
+            <circle cx="12" cy="12" r="6"></circle>
+          </svg>
+          <h3>Ouverture en live</h3>
+          <p>Tout est ouvert en direct, sans montage.</p>
+        </div>
+
+        <div class="gcard">
+          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
+            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"/>
+          </svg>
+          <h3>Transparence totale</h3>
+          <p>Preuve d’achat sur demande.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- SECTION 5 -->
-  <section class="social">
-    <h2>Suivez-nous en live</h2>
+  <section class="social" id="social">
+    <h2 class="display-title">Suivez-nous en live</h2>
     <div class="social-buttons">
-      <a href="https://www.tiktok.com/@gran.tesoro12?_r=1&_t=ZN-93dzvdbGTSg" class="btn btn-secondary" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://whatnot.com/s/NtBilMbE" class="btn btn-secondary" target="_blank" rel="noopener">Whatnot</a>
-      <a href="https://www.instagram.com/grantesoro12/?hl=fr" class="btn btn-secondary" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn" href="https://www.tiktok.com/@gran.tesoro12?_r=1&_t=ZN-93dzvdbGTSg" target="_blank" rel="noopener">TikTok</a>
+      <a class="btn" href="https://whatnot.com/s/NtBilMbE" target="_blank" rel="noopener">Whatnot</a>
+      <a class="btn" href="https://www.instagram.com/grantesoro12/?hl=fr" target="_blank" rel="noopener">Instagram</a>
     </div>
   </section>
 
