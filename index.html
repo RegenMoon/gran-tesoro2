@@ -18,21 +18,24 @@
   --muted:rgba(255,255,255,.65);
 }
 
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 
+/* ======================
+   FOND PROFOND ROYAL
+   ====================== */
 body{
   font-family: Inter, sans-serif;
   color:var(--text);
   overflow-x:hidden;
 
-  /* NOIR PROFOND + IMAGE */
   background:
-    radial-gradient(circle at center, rgba(0,0,0,.15), rgba(0,0,0,.92) 75%),
+    radial-gradient(circle at center, rgba(0,0,0,.10), rgba(0,0,0,.95) 80%),
     url("./background-grantesoro.jpg.png") center top / cover no-repeat fixed;
 }
 
-/* ÉTOILES SCINTILLANTES SUBTILES */
+/* ÉTOILES DORÉES SUBTILES */
 body::before{
   content:"";
   position:fixed;
@@ -41,15 +44,15 @@ body::before{
   z-index:0;
   background:
     radial-gradient(circle, rgba(233,196,106,.9) 1px, transparent 2px);
-  background-size: 220px 220px;
-  opacity:.10;
-  animation: sparkle 6s infinite alternate ease-in-out;
+  background-size: 260px 260px;
+  opacity:.08;
+  animation: sparkle 8s infinite alternate ease-in-out;
   mix-blend-mode: screen;
 }
 
 @keyframes sparkle{
-  0%{opacity:.06}
-  100%{opacity:.18}
+  0%{opacity:.05}
+  100%{opacity:.15}
 }
 
 section{
@@ -63,7 +66,9 @@ section{
   z-index:1;
 }
 
-/* ===== HERO ===== */
+/* ======================
+   HERO IMPÉRIAL
+   ====================== */
 
 .hero{
   text-align:center;
@@ -117,26 +122,9 @@ section{
   line-height:1.7;
 }
 
-.btn{
-  margin-top:40px;
-  padding:16px 28px;
-  border-radius:14px;
-  border:1px solid rgba(233,196,106,.35);
-  background:linear-gradient(135deg,#d62828,#8e1f1f);
-  color:white;
-  text-decoration:none;
-  font-weight:700;
-  display:inline-block;
-  box-shadow:0 15px 40px rgba(214,40,40,.3);
-  transition:.3s;
-}
-
-.btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 20px 50px rgba(214,40,40,.45);
-}
-
-/* ===== FRAME ===== */
+/* ======================
+   FRAME PREMIUM (on garde tout)
+   ====================== */
 
 .frame{
   max-width:1200px;
@@ -165,7 +153,9 @@ h2{
   margin-bottom:40px;
 }
 
-/* ===== BATTLE ===== */
+/* ======================
+   BATTLE (inchangé)
+   ====================== */
 
 .battle-grid{
   display:grid;
@@ -203,7 +193,9 @@ h2{
   text-shadow:0 0 25px rgba(233,196,106,.5);
 }
 
-/* ===== MYSTERY ===== */
+/* ======================
+   MYSTERY (inchangé)
+   ====================== */
 
 .mystery-row{
   display:flex;
@@ -228,7 +220,9 @@ h2{
   margin-bottom:10px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ======================
+   RESPONSIVE (inchangé)
+   ====================== */
 
 @media(max-width:900px){
 
