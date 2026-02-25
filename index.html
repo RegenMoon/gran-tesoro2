@@ -47,7 +47,7 @@
         url("./background-grantesoro.jpg.png") center top / cover no-repeat fixed;
     }
 
-    /* ✅ étoiles / grain premium (plus profond, scintille léger) */
+    /* ✅ étoiles / grain premium */
     body::before{
       content:"";
       position:fixed; inset:0;
@@ -231,7 +231,7 @@
     }
 
     /* =========================
-       HERO – TITRE “GRAN TESORO” MAGISTRAL (sans image)
+       HERO – TITRE “GRAN TESORO” FIXE (doré métallisé + relief)
        ========================= */
     .hero{
       min-height: 92vh;
@@ -260,70 +260,38 @@
       padding: 0 10px;
     }
 
-    /* Texte OR texturé + bevel */
+    /* Texte OR métallisé + relief (FIXE, pas de mouvement) */
     .logo-text{
       position:relative;
       display:inline-block;
 
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,.60), transparent 30%),
-        repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 2px, transparent 2px 6px),
-        linear-gradient(180deg, #fff7c2 0%, #f3d77a 26%, #d4a93c 55%, #b8860b 82%, #fff2a8 100%);
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.55), transparent 30%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 2px, transparent 2px 6px),
+        linear-gradient(180deg, #fff6be 0%, #f2d579 26%, #d4a93c 55%, #b8860b 82%, #fff1a8 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
 
       text-shadow:
-        0 2px 0 rgba(0,0,0,.65),
-        0 10px 28px rgba(0,0,0,.78),
-        0 0 28px rgba(233,196,106,.22);
-      filter: saturate(1.08);
+        0 2px 0 rgba(0,0,0,.72),
+        0 10px 28px rgba(0,0,0,.82),
+        0 0 28px rgba(233,196,106,.20);
+      filter: saturate(1.06);
     }
 
-    /* Double couche pour donner du relief (bevel 3D) */
+    /* Sous-couche sombre = relief */
     .logo-text::before{
       content: attr(data-text);
       position:absolute;
       left:0; top:0;
       z-index:-1;
       transform: translate(2px, 2px);
-      color: rgba(0,0,0,.62);
-      filter: blur(.4px);
+      color: rgba(0,0,0,.66);
+      filter: blur(.45px);
     }
 
-    /* Shine animé (lumière qui traverse) */
-    .logo-text::after{
-      content: attr(data-text);
-      position:absolute;
-      left:0; top:0;
-      width: 100%;
-      height: 100%;
-      background:
-        linear-gradient(110deg,
-          transparent 0%,
-          rgba(255,255,255,.00) 35%,
-          rgba(255,255,255,.68) 50%,
-          rgba(255,255,255,.00) 65%,
-          transparent 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color: transparent;
-      mix-blend-mode: screen;
-      transform: translateX(-120%);
-      animation: logoShine 3.6s ease-in-out infinite;
-      pointer-events:none;
-      opacity:.70;
-    }
-
-    @keyframes logoShine{
-      0%{ transform: translateX(-120%); opacity:.00; }
-      20%{ opacity:.70; }
-      50%{ transform: translateX(120%); opacity:.75; }
-      75%{ opacity:.10; }
-      100%{ transform: translateX(120%); opacity:.00; }
-    }
-
-    /* Lignes + X (comme ton visuel) */
+    /* Lignes + X (fixes) */
     .logo-divider{
       display:flex;
       align-items:center;
@@ -350,12 +318,12 @@
       background-clip:text;
       color: transparent;
       text-shadow:
-        0 2px 8px rgba(0,0,0,.8),
-        0 0 18px rgba(233,196,106,.22);
+        0 2px 8px rgba(0,0,0,.84),
+        0 0 18px rgba(233,196,106,.18);
       position:relative;
     }
 
-    /* petites étincelles autour du titre (subtiles) */
+    /* petites étincelles autour (fixes) */
     .spark{
       position:absolute;
       width: 8px;
@@ -614,7 +582,7 @@
     }
 
     .mystery-gap{
-      margin-top: 14px; /* ✅ espace demandé avant “contenu” */
+      margin-top: 14px;
     }
 
     .mcard{
@@ -734,7 +702,6 @@
         font-size: 2.6rem;
       }
 
-      /* Logo adapt */
       .logo-divider span{ width: 90px; }
       .logo-title{ letter-spacing: .08em; }
 
@@ -789,7 +756,6 @@
   <!-- SECTION 1 -->
   <section class="hero" id="home">
 
-    <!-- ✅ TITRE GRAND + MAGISTRAL + LIGNES + X + SHINE -->
     <div class="logo-wrap">
       <h1 class="logo-title">
         <span class="spark s1"></span>
@@ -829,7 +795,8 @@
     <div class="frame">
       <h2 class="display-title">⚔️ Battle 1v1 ⚔️</h2>
 
-      <p class="section-lead">
+      <!-- ✅ demandé : sous-titre en gris -->
+      <p class="section-lead muted">
         Venez vous affronter dans un <strong>duel d’ouverture</strong> afin de tenter d’emporter le trésor.
       </p>
 
@@ -926,7 +893,11 @@
   <section id="concept">
     <div class="frame">
       <h2 class="display-title">🛡️ Nos Garanties 🛡️</h2>
-      <p class="section-lead">Des ouvertures en live, des règles claires et une transparence totale.</p>
+
+      <!-- ✅ demandé : sous-titre en gris -->
+      <p class="section-lead muted">
+        Des ouvertures en live, des règles claires et une transparence totale.
+      </p>
 
       <div class="grid">
         <div class="gcard">
