@@ -13,7 +13,7 @@
   <style>
     :root{
       --bg: #0b0e14;
-      --bg2:#070a10;
+      --bg2:#05070c;
       --panel: rgba(255,255,255,.045);
       --panel2: rgba(255,255,255,.06);
       --stroke: rgba(255,255,255,.12);
@@ -24,7 +24,6 @@
 
       --gold: #e9c46a;
       --gold2:#caa64b;
-      --goldGlow: rgba(233,196,106,.35);
 
       --red: #d62828;
       --red2:#8e1f1f;
@@ -39,14 +38,13 @@
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      background: radial-gradient(circle at top, rgba(233,196,106,.10), transparent 45%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
+      background: var(--bg);
       color:var(--text);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       overflow-x:hidden;
     }
 
-    /* Star dust global (plus subtil + premium) */
+    /* Poussière d’étoiles globale (subtile) */
     body::before{
       content:"";
       position:fixed; inset:0;
@@ -67,6 +65,7 @@
       100%{transform:translate3d(-90px,140px,0)}
     }
 
+    /* ===== SECTIONS ===== */
     section{
       position:relative;
       z-index:1;
@@ -76,8 +75,34 @@
       flex-direction:column;
       justify-content:center;
       gap: 28px;
-      border-bottom: 1px solid rgba(255,255,255,.05);
+      border: none; /* <-- supprimé la ligne de séparation */
     }
+
+    /* Alternance de fond + fondu continu */
+    section:nth-of-type(odd){
+      background:
+        radial-gradient(circle at top, rgba(233,196,106,.16), transparent 55%),
+        linear-gradient(180deg, #0b0e14, #05070c);
+    }
+    section:nth-of-type(even){
+      background:
+        radial-gradient(circle at bottom, rgba(233,196,106,.16), transparent 55%),
+        linear-gradient(180deg, #05070c, #0b0e14);
+    }
+
+    /* Ajoute un fondu “bridge” pour casser les cassures */
+    section::after{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      bottom:-80px;
+      height:160px;
+      pointer-events:none;
+      z-index:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35), rgba(0,0,0,0));
+      opacity:.25;
+    }
+    section:last-of-type::after{ display:none; }
 
     /* Headings */
     .display-title{
@@ -123,7 +148,6 @@
       background: rgba(255,255,255,.03);
       color: var(--text);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
     }
     .btn:hover{
       transform: translateY(-2px);
@@ -167,15 +191,8 @@
       border-color: rgba(233,196,106,.28);
       box-shadow: 0 0 44px rgba(233,196,106,.18);
     }
-    .chip .chip-dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--gold);
-      box-shadow: 0 0 14px rgba(233,196,106,.6);
-    }
 
-    /* Panel (reusable) */
+    /* Panel */
     .frame{
       max-width: 1280px;
       margin: 0 auto;
@@ -187,6 +204,7 @@
       box-shadow: var(--shadow);
       position:relative;
       overflow:hidden;
+      z-index:1;
     }
     .frame::before{
       content:"";
@@ -199,47 +217,20 @@
       background-size: 320px 320px, 140px 140px;
     }
 
-    /* Icons (SVG) */
-    .icon{
-      width: 22px;
-      height: 22px;
-      display:inline-block;
-      vertical-align: middle;
-      color: var(--gold);
-      filter: drop-shadow(0 0 10px rgba(233,196,106,.18));
-    }
-    .icon.purple{ color: #a78bfa; }
-    .icon.red{ color: #ff4d4d; }
-    .icon.white{ color: rgba(245,245,245,.9); }
-    .icon.big{
-      width: 56px;
-      height: 56px;
-      filter: drop-shadow(0 0 18px rgba(233,196,106,.25));
-    }
-
     /* =========================
-       SECTION 1 – HERO
+       HERO
        ========================= */
     .hero{
       min-height: 92vh;
       padding: 120px 8vw 90px;
-      background:
-        radial-gradient(circle at top, rgba(233,196,106,.18), transparent 52%),
-        linear-gradient(180deg, #0b0e14, #05070c);
       text-align:center;
     }
-
     .hero h1{
       font-size: clamp(2.8rem, 5vw, 4.3rem);
       font-weight: 900;
       margin-bottom: 8px;
-    }
-    .brandline{
       font-family: Cinzel, serif;
-      font-weight: 800;
       letter-spacing: .06em;
-      color: rgba(245,245,245,.95);
-      text-shadow: 0 20px 60px rgba(0,0,0,.7);
     }
     .hero-sub{
       margin: 18px auto 6px;
@@ -251,28 +242,8 @@
     }
 
     /* =========================
-       SECTION 2 – BATTLE
+       BATTLE
        ========================= */
-    .battle{
-      background:
-        radial-gradient(circle at 50% 25%, rgba(233,196,106,.14), transparent 55%),
-        linear-gradient(180deg, #0b0e14, #070a10);
-    }
-
-    .section-title-row{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap: 14px;
-      margin-bottom: 6px;
-    }
-    .section-title-row .line{
-      height: 2px;
-      width: clamp(90px, 16vw, 200px);
-      background: linear-gradient(90deg, transparent, rgba(233,196,106,.85), transparent);
-      opacity:.9;
-    }
-
     .battle-grid{
       display:grid;
       grid-template-columns: 1fr auto 1fr;
@@ -288,6 +259,8 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      position:relative;
+      z-index:1;
     }
     .card:hover{
       transform: translateY(-4px);
@@ -316,7 +289,6 @@
       margin: 6px 0 14px;
     }
 
-    /* Booster images */
     .booster-img{
       width: 170px;
       height:auto;
@@ -327,7 +299,6 @@
       box-shadow:
         0 26px 45px rgba(0,0,0,.65),
         0 0 34px rgba(233,196,106,.22);
-      transform: translateY(0);
       transition: transform .28s ease, filter .28s ease, box-shadow .28s ease;
     }
     .card:hover .booster-img{
@@ -342,10 +313,8 @@
       margin-top: 12px;
       color: rgba(245,245,245,.70);
       font-weight: 700;
-      letter-spacing:.01em;
     }
 
-    /* VS */
     .vs{
       display:flex;
       align-items:center;
@@ -368,7 +337,6 @@
       50%{transform:scale(1.06)}
     }
 
-    /* Battle flow */
     .flow{
       display:flex;
       align-items:stretch;
@@ -389,9 +357,7 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      gap: 12px;
-      position:relative;
-      overflow:hidden;
+      gap: 10px;
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
     .step:hover{
@@ -402,10 +368,8 @@
     .step .label{
       font-size: 1.05rem;
       color: rgba(245,245,245,.92);
-      letter-spacing:.01em;
     }
 
-    /* BIG + IMPOSANT : VICTOIRE */
     .step.win{
       background: linear-gradient(135deg, rgba(233,196,106,.92), rgba(202,166,75,.92));
       color: #141414;
@@ -414,12 +378,11 @@
     }
     .step.win .label{ color:#141414; font-size:1.12rem; }
     .step.win .bigtext{
-      font-size: 1.25rem;
+      font-size: 1.35rem; /* plus imposant */
       font-weight: 1000;
       letter-spacing:.02em;
     }
 
-    /* BIG + IMPOSANT : RÉCOMPENSE */
     .step.reward{
       background: linear-gradient(135deg, var(--red), var(--red2));
       border-color: rgba(255,255,255,.14);
@@ -462,19 +425,11 @@
       text-align:center;
       color: rgba(245,245,245,.68);
       font-weight: 650;
-      letter-spacing:.02em;
     }
 
     /* =========================
-       SECTION 3 – MYSTERY
+       MYSTERY
        ========================= */
-    .mystery{
-      background:
-        radial-gradient(circle at 50% 25%, rgba(233,196,106,.12), transparent 56%),
-        linear-gradient(180deg, #0b0e14, #070a10);
-      text-align:center;
-    }
-
     .mystery-row{
       display:flex;
       justify-content:center;
@@ -496,6 +451,9 @@
       flex-direction:column;
       gap: 10px;
       justify-content:center;
+      text-align:center;
+      font-weight: 650;
+      color: rgba(245,245,245,.88);
     }
     .mcard:hover{
       transform: translateY(-4px);
@@ -527,15 +485,8 @@
     }
 
     /* =========================
-       SECTION 4 – GARANTIES
+       GARANTIES
        ========================= */
-    .concept{
-      background:
-        radial-gradient(circle at 50% 25%, rgba(233,196,106,.10), transparent 58%),
-        linear-gradient(180deg, #0b0e14, #070a10);
-      text-align:center;
-    }
-
     .grid{
       margin-top: 26px;
       display:grid;
@@ -552,6 +503,7 @@
       box-shadow: var(--shadow2);
       padding: 22px 20px;
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      text-align:center;
     }
     .gcard:hover{
       transform: translateY(-4px);
@@ -571,12 +523,8 @@
     }
 
     /* =========================
-       SECTION 5 – SOCIAL + FOOTER
+       SOCIAL + FOOTER
        ========================= */
-    .social{
-      background: linear-gradient(180deg, #0b0e14, #07090f);
-      text-align:center;
-    }
     .social-buttons{
       display:flex;
       justify-content:center;
@@ -617,21 +565,12 @@
 
   <!-- SECTION 1 -->
   <section class="hero" id="home">
-    <h1 class="brandline">GranTesoro</h1>
+    <h1>GranTesoro</h1>
 
     <div class="chip-row" aria-label="Navigation sections">
-      <a class="chip" href="#battle">
-        <span class="chip-dot"></span>
-        Battle 1v1
-      </a>
-      <a class="chip" href="#mystery">
-        <span class="chip-dot"></span>
-        Mystery Packs
-      </a>
-      <a class="chip" href="#concept">
-        <span class="chip-dot"></span>
-        Nos Garanties
-      </a>
+      <a class="chip" href="#battle">⚔️ Battle 1v1</a>
+      <a class="chip" href="#mystery">🎁 Mystery Packs</a>
+      <a class="chip" href="#concept">🛡️ Nos Garanties</a>
     </div>
 
     <p class="hero-sub">
@@ -641,13 +580,8 @@
 
     <div class="cta-group">
       <a class="btn btn-live" href="https://whatnot.com/s/NtBilMbE" target="_blank" rel="noopener">
-        <!-- Live icon -->
-        <svg class="icon red" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <circle cx="12" cy="12" r="6"></circle>
-        </svg>
-        Participer au live
+        🔴 Participer au live
       </a>
-
       <a class="btn" href="https://whatnot.com/s/NtBilMbE" target="_blank" rel="noopener">
         Accéder à notre page
       </a>
@@ -655,38 +589,17 @@
   </section>
 
   <!-- SECTION 2 -->
-  <section class="battle" id="battle">
+  <section id="battle">
     <div class="frame">
-
-      <div class="section-title-row">
-        <div class="line"></div>
-        <h2 class="display-title">
-          <!-- Swords icon -->
-          <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M3.3 20.7a1 1 0 0 0 1.4 0l4.1-4.1 1.3 1.3-2.5 2.5a1 1 0 1 0 1.4 1.4l2.5-2.5 1.3 1.3-4.1 4.1a1 1 0 0 0 1.4 1.4l4.1-4.1 1.3 1.3a1 1 0 0 0 1.4-1.4l-1.3-1.3 4.1-4.1a1 1 0 0 0 0-1.4l-3.2-3.2 1.9-1.9a3 3 0 0 0 0-4.2l-.3-.3a3 3 0 0 0-4.2 0L14.4 4.8 11.2 1.6a1 1 0 0 0-1.4 0L7.1 4.3a1 1 0 0 0 0 1.4l3.2 3.2-1.9 1.9-3.2-3.2a1 1 0 0 0-1.4 0L1.6 9.8a1 1 0 0 0 0 1.4l3.2 3.2-1.5 1.5a1 1 0 0 0 0 1.4l1.3 1.3-1.3 1.3a1 1 0 0 0 0 1.4z"/>
-          </svg>
-          Battle 1v1
-          <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M3.3 20.7a1 1 0 0 0 1.4 0l4.1-4.1 1.3 1.3-2.5 2.5a1 1 0 1 0 1.4 1.4l2.5-2.5 1.3 1.3-4.1 4.1a1 1 0 0 0 1.4 1.4l4.1-4.1 1.3 1.3a1 1 0 0 0 1.4-1.4l-1.3-1.3 4.1-4.1a1 1 0 0 0 0-1.4l-3.2-3.2 1.9-1.9a3 3 0 0 0 0-4.2l-.3-.3a3 3 0 0 0-4.2 0L14.4 4.8 11.2 1.6a1 1 0 0 0-1.4 0L7.1 4.3a1 1 0 0 0 0 1.4l3.2 3.2-1.9 1.9-3.2-3.2a1 1 0 0 0-1.4 0L1.6 9.8a1 1 0 0 0 0 1.4l3.2 3.2-1.5 1.5a1 1 0 0 0 0 1.4l1.3 1.3-1.3 1.3a1 1 0 0 0 0 1.4z"/>
-          </svg>
-        </h2>
-        <div class="line"></div>
-      </div>
+      <h2 class="display-title">⚔️ Battle 1v1 ⚔️</h2>
 
       <p class="section-lead">
         Venez vous affronter dans un <strong>duel d’ouverture</strong> afin de tenter d’emporter le trésor.
       </p>
 
       <div class="battle-grid">
-        <!-- Joueur A -->
         <div class="card">
-          <div class="card-head">
-            <!-- User icon -->
-            <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/>
-            </svg>
-            Joueur A
-          </div>
+          <div class="card-head">👤 Joueur A</div>
           <div class="card-body">
             <div class="buy">Achète 1 booster</div>
             <img class="booster-img" src="./booster-joueurA.png.webp" alt="Booster OP-13 Successeurs">
@@ -694,16 +607,10 @@
           </div>
         </div>
 
-        <div class="vs" aria-label="Versus">VS</div>
+        <div class="vs">VS</div>
 
-        <!-- Joueur B -->
         <div class="card">
-          <div class="card-head">
-            <svg class="icon purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/>
-            </svg>
-            Joueur B
-          </div>
+          <div class="card-head">👤 Joueur B</div>
           <div class="card-body">
             <div class="buy">Achète 1 booster</div>
             <img class="booster-img" src="./booster-joueurB.png.webp" alt="Booster EB-03 Heroines">
@@ -712,20 +619,16 @@
         </div>
       </div>
 
-      <div class="flow" aria-label="Déroulé du battle">
+      <div class="flow">
         <div class="step">
-          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20 8h-3V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h1v2h10v-2h1a4 4 0 0 0 4-4v-2a2 2 0 0 0-2-2zm-5 0H9V6h6z"/>
-          </svg>
+          <div style="font-size:2.2rem;">📦</div>
           <div class="label">Ouverture en direct</div>
         </div>
 
         <div class="arrow" aria-hidden="true"></div>
 
         <div class="step win">
-          <svg class="icon big" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M17 4h-1V2H8v2H7a2 2 0 0 0-2 2v3a5 5 0 0 0 4 4.9V17H7v2h10v-2h-2v-2.1A5 5 0 0 0 19 9V6a2 2 0 0 0-2-2zm-8 9.7A3 3 0 0 1 7 11V6h2zm10-2.7a3 3 0 0 1-2 2.7V6h2z"/>
-          </svg>
+          <div style="font-size:3rem;">🏆</div>
           <div class="bigtext">Meilleure carte = VICTOIRE</div>
           <div class="label">Le gagnant l’emporte.</div>
         </div>
@@ -733,103 +636,75 @@
         <div class="arrow" aria-hidden="true"></div>
 
         <div class="step reward">
-          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20 7h-2.2A3 3 0 0 0 12 5.2 3 3 0 0 0 6.2 7H4a2 2 0 0 0-2 2v2h10V9h2v2h10V9a2 2 0 0 0-2-2zm-13.8 0a1.2 1.2 0 0 1 2.4 0zm8.2 0a1.2 1.2 0 0 1 2.4 0zM2 13v7a2 2 0 0 0 2 2h8v-9zm12 9h8a2 2 0 0 0 2-2v-7h-10z"/>
-          </svg>
+          <div style="font-size:3rem;">🎁</div>
           <div class="label">Récupère ta récompense</div>
         </div>
       </div>
 
       <p class="footnote">• Lot annoncé à l’avance •</p>
-
     </div>
   </section>
 
   <!-- SECTION 3 -->
-  <section class="mystery" id="mystery">
+  <section id="mystery">
     <div class="frame">
-
-      <div class="section-title-row">
-        <div class="line"></div>
-        <h2 class="display-title">Mystery Packs</h2>
-        <div class="line"></div>
-      </div>
+      <h2 class="display-title">🎴 Mystery Packs 🎴</h2>
 
       <p class="section-lead">
         Plongez dans l’univers des Mystery Packs et tentez de découvrir des cartes rares, exclusives ou recherchées.
       </p>
 
-      <p class="section-lead" style="margin-top:-6px; color: rgba(233,196,106,.95);">
+      <p class="section-lead" style="margin-top:-6px;">
         <strong>Contenu d’un Mystery Pack :</strong>
       </p>
 
       <div class="mystery-row">
         <div class="mcard">
-          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
-            <path d="M20 8h-3V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h1v2h10v-2h1a4 4 0 0 0 4-4v-2a2 2 0 0 0-2-2zm-5 0H9V6h6z"/>
-          </svg>
+          <div style="font-size:2.2rem;">📦</div>
           <h3>Booster officiel</h3>
           <p>Issu d’une display scellée.</p>
         </div>
 
-        <div class="connector" aria-hidden="true">+</div>
+        <div class="connector">+</div>
 
         <div class="mcard">
-          <svg class="icon big" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
-            <path d="M12 2l1.6 6.2L20 6l-3.8 4.7L22 12l-5.8 1.3L20 18l-6.4-2.2L12 22l-1.6-6.2L4 18l3.8-4.7L2 12l5.8-1.3L4 6l6.4 2.2z"/>
-          </svg>
+          <div style="font-size:2.2rem;">💥</div>
           <h3>Booster maison</h3>
           <p><strong>33% de chance de HIT minimum</strong></p>
         </div>
 
-        <div class="connector" aria-hidden="true">→</div>
+        <div class="connector">→</div>
 
         <div class="mcard">
-          <svg class="icon big red" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
-            <circle cx="12" cy="12" r="6"></circle>
-          </svg>
+          <div style="font-size:2.2rem;">🔴</div>
           <h3>Ouverture en live</h3>
           <p>Tout est ouvert en direct, sous vos yeux.</p>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- SECTION 4 -->
-  <section class="concept" id="concept">
+  <section id="concept">
     <div class="frame">
-      <div class="section-title-row">
-        <div class="line"></div>
-        <h2 class="display-title">Nos Garanties</h2>
-        <div class="line"></div>
-      </div>
-
+      <h2 class="display-title">🛡️ Nos Garanties 🛡️</h2>
       <p class="section-lead">
         Des ouvertures en live, des règles claires et une transparence totale.
       </p>
 
       <div class="grid">
         <div class="gcard">
-          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
-            <path d="M20 8h-3V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h1v2h10v-2h1a4 4 0 0 0 4-4v-2a2 2 0 0 0-2-2zm-5 0H9V6h6z"/>
-          </svg>
+          <div style="font-size:2.2rem;">📦</div>
           <h3>Boosters officiels</h3>
           <p>Issus exclusivement de displays scellées.</p>
         </div>
-
         <div class="gcard">
-          <svg class="icon big red" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
-            <circle cx="12" cy="12" r="6"></circle>
-          </svg>
+          <div style="font-size:2.2rem;">🔴</div>
           <h3>Ouverture en live</h3>
           <p>Tout est ouvert en direct, sans montage.</p>
         </div>
-
         <div class="gcard">
-          <svg class="icon big white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin:0 auto;">
-            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"/>
-          </svg>
+          <div style="font-size:2.2rem;">🛡️</div>
           <h3>Transparence totale</h3>
           <p>Preuve d’achat sur demande.</p>
         </div>
@@ -838,7 +713,7 @@
   </section>
 
   <!-- SECTION 5 -->
-  <section class="social" id="social">
+  <section id="social">
     <h2 class="display-title">Suivez-nous en live</h2>
     <div class="social-buttons">
       <a class="btn" href="https://www.tiktok.com/@gran.tesoro12?_r=1&_t=ZN-93dzvdbGTSg" target="_blank" rel="noopener">TikTok</a>
