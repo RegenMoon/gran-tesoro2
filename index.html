@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gran Tesoro – Vente de Boosters One Piece en Direct</title>
 
-  <!-- Fonts (pro, cohérent) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -14,10 +14,6 @@
     :root{
       --bg: #0b0e14;
       --bg2:#05070c;
-      --panel: rgba(255,255,255,.045);
-      --panel2: rgba(255,255,255,.06);
-      --stroke: rgba(255,255,255,.12);
-      --stroke2: rgba(255,255,255,.18);
 
       --text: #f5f5f5;
       --muted: rgba(245,245,245,.68);
@@ -29,8 +25,6 @@
       --red2:#8e1f1f;
 
       --radius: 22px;
-      --radius2: 16px;
-
       --shadow: 0 20px 60px rgba(0,0,0,.55);
       --shadow2: 0 14px 35px rgba(0,0,0,.45);
     }
@@ -75,7 +69,6 @@
       flex-direction:column;
       justify-content:center;
       gap: 28px;
-      border: none; /* <-- supprimé la ligne de séparation */
     }
 
     /* Alternance de fond + fondu continu */
@@ -90,33 +83,31 @@
         linear-gradient(180deg, #05070c, #0b0e14);
     }
 
-    /* Ajoute un fondu “bridge” pour casser les cassures */
+    /* "Bridge" léger */
     section::after{
       content:"";
       position:absolute;
       left:0; right:0;
-      bottom:-80px;
-      height:160px;
+      bottom:-70px;
+      height:140px;
       pointer-events:none;
       z-index:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35), rgba(0,0,0,0));
-      opacity:.25;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.30), rgba(0,0,0,0));
+      opacity:.18;
     }
     section:last-of-type::after{ display:none; }
 
-    /* Headings */
+    /* Titres */
     .display-title{
       font-family: Cinzel, serif;
       letter-spacing: .04em;
       font-weight: 800;
     }
-
     section h2{
-      font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+      font-size: clamp(2.0rem, 4.2vw, 3.2rem);
       text-align:center;
       font-weight: 900;
     }
-
     .section-lead{
       max-width: 980px;
       margin: 0 auto;
@@ -127,74 +118,9 @@
       font-size: 1.15rem;
     }
 
-    /* Buttons */
-    .cta-group{
-      display:flex;
-      gap: 18px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
-    .btn{
-      padding: 16px 26px;
-      border-radius: 14px;
-      text-decoration:none;
-      font-weight: 850;
-      letter-spacing: .02em;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .btn:hover{
-      transform: translateY(-2px);
-      border-color: rgba(233,196,106,.28);
-      box-shadow: 0 0 40px rgba(233,196,106,.18);
-      background: rgba(255,255,255,.05);
-    }
-    .btn-live{
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      border-color: rgba(255,255,255,.14);
-      box-shadow: 0 14px 40px rgba(214,40,40,.25);
-    }
-    .btn-live:hover{
-      box-shadow: 0 18px 55px rgba(214,40,40,.30), 0 0 40px rgba(233,196,106,.12);
-    }
-
-    /* Chips nav in hero */
-    .chip-row{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap: 14px;
-      margin-top: 18px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 11px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      text-decoration:none;
-      font-weight: 800;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      box-shadow: 0 0 26px rgba(233,196,106,.08);
-    }
-    .chip:hover{
-      transform: translateY(-2px);
-      border-color: rgba(233,196,106,.28);
-      box-shadow: 0 0 44px rgba(233,196,106,.18);
-    }
-
-    /* Panel */
+    /* Frame */
     .frame{
-      max-width: 1280px;
+      width: min(1280px, 100%);
       margin: 0 auto;
       padding: 58px 4.5vw;
       border-radius: var(--radius);
@@ -210,23 +136,86 @@
       content:"";
       position:absolute; inset:-60px;
       pointer-events:none;
-      opacity:.18;
+      opacity:.16;
       background:
         repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 2px, transparent 2px 12px),
         radial-gradient(circle, rgba(255,255,255,.08) 0 1px, transparent 2px);
       background-size: 320px 320px, 140px 140px;
     }
 
-    /* =========================
-       HERO
-       ========================= */
+    /* Buttons */
+    .cta-group{
+      display:flex;
+      gap: 14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .btn{
+      padding: 16px 24px;
+      border-radius: 14px;
+      text-decoration:none;
+      font-weight: 850;
+      letter-spacing: .02em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      min-width: 220px;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(233,196,106,.28);
+      box-shadow: 0 0 40px rgba(233,196,106,.18);
+      background: rgba(255,255,255,.05);
+    }
+    .btn-live{
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 14px 40px rgba(214,40,40,.25);
+    }
+
+    /* Chips nav */
+    .chip-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      box-shadow: 0 0 26px rgba(233,196,106,.08);
+      white-space: nowrap;
+    }
+    .chip:hover{
+      transform: translateY(-2px);
+      border-color: rgba(233,196,106,.28);
+      box-shadow: 0 0 44px rgba(233,196,106,.18);
+    }
+
+    /* HERO */
     .hero{
       min-height: 92vh;
       padding: 120px 8vw 90px;
       text-align:center;
     }
     .hero h1{
-      font-size: clamp(2.8rem, 5vw, 4.3rem);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
       font-weight: 900;
       margin-bottom: 8px;
       font-family: Cinzel, serif;
@@ -235,15 +224,13 @@
     .hero-sub{
       margin: 18px auto 6px;
       max-width: 880px;
-      font-size: 1.35rem;
-      line-height: 1.55;
+      font-size: 1.25rem;
+      line-height: 1.6;
       color: rgba(245,245,245,.88);
       font-weight: 650;
     }
 
-    /* =========================
-       BATTLE
-       ========================= */
+    /* ===== BATTLE ===== */
     .battle-grid{
       display:grid;
       grid-template-columns: 1fr auto 1fr;
@@ -284,13 +271,15 @@
       text-align:center;
     }
     .buy{
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 950;
       margin: 6px 0 14px;
     }
 
+    /* Booster */
     .booster-img{
       width: 170px;
+      max-width: 70vw;
       height:auto;
       display:block;
       margin: 0 auto;
@@ -302,13 +291,12 @@
       transition: transform .28s ease, filter .28s ease, box-shadow .28s ease;
     }
     .card:hover .booster-img{
-      transform: translateY(-3px) scale(1.06);
+      transform: translateY(-3px) scale(1.05);
       filter: brightness(1.06);
       box-shadow:
         0 34px 60px rgba(0,0,0,.72),
         0 0 50px rgba(233,196,106,.34);
     }
-
     .tag{
       margin-top: 12px;
       color: rgba(245,245,245,.70);
@@ -326,17 +314,19 @@
       border: 1px solid rgba(255,255,255,.12);
       box-shadow: 0 0 50px rgba(233,196,106,.16);
       font-weight: 1000;
-      font-size: 3.2rem;
+      font-size: 3.0rem;
       color: #f6e6b6;
       text-shadow: 0 0 20px rgba(233,196,106,.45), 0 10px 30px rgba(0,0,0,.75);
       animation: vsPulse 1.6s ease-in-out infinite;
       user-select:none;
+      margin: 0 auto;
     }
     @keyframes vsPulse{
       0%,100%{transform:scale(1)}
       50%{transform:scale(1.06)}
     }
 
+    /* Flow */
     .flow{
       display:flex;
       align-items:stretch;
@@ -346,7 +336,7 @@
       flex-wrap:wrap;
     }
     .step{
-      min-width: 270px;
+      width: min(360px, 100%);
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
@@ -360,11 +350,6 @@
       gap: 10px;
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
-    .step:hover{
-      transform: translateY(-4px);
-      border-color: rgba(233,196,106,.26);
-      box-shadow: 0 22px 55px rgba(0,0,0,.58), 0 0 44px rgba(233,196,106,.14);
-    }
     .step .label{
       font-size: 1.05rem;
       color: rgba(245,245,245,.92);
@@ -376,21 +361,13 @@
       border-color: rgba(233,196,106,.55);
       box-shadow: 0 24px 70px rgba(233,196,106,.20), 0 10px 40px rgba(0,0,0,.55);
     }
-    .step.win .label{ color:#141414; font-size:1.12rem; }
-    .step.win .bigtext{
-      font-size: 1.35rem; /* plus imposant */
-      font-weight: 1000;
-      letter-spacing:.02em;
-    }
+    .step.win .label{ color:#141414; }
+    .step.win .bigtext{ font-size: 1.35rem; font-weight: 1000; }
 
     .step.reward{
       background: linear-gradient(135deg, var(--red), var(--red2));
       border-color: rgba(255,255,255,.14);
       box-shadow: 0 24px 70px rgba(214,40,40,.18), 0 10px 40px rgba(0,0,0,.55);
-    }
-    .step.reward .label{
-      font-size:1.12rem;
-      font-weight: 950;
     }
 
     .arrow{
@@ -427,9 +404,7 @@
       font-weight: 650;
     }
 
-    /* =========================
-       MYSTERY
-       ========================= */
+    /* ===== MYSTERY ===== */
     .mystery-row{
       display:flex;
       justify-content:center;
@@ -438,27 +413,18 @@
       margin-top: 22px;
       align-items:stretch;
     }
-
     .mcard{
-      width: min(340px, 92vw);
+      width: min(360px, 100%);
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.05);
       box-shadow: var(--shadow2);
       padding: 22px 20px;
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
       display:flex;
       flex-direction:column;
       gap: 10px;
       justify-content:center;
       text-align:center;
-      font-weight: 650;
-      color: rgba(245,245,245,.88);
-    }
-    .mcard:hover{
-      transform: translateY(-4px);
-      border-color: rgba(233,196,106,.26);
-      box-shadow: 0 22px 55px rgba(0,0,0,.58), 0 0 44px rgba(233,196,106,.14);
     }
     .mcard h3{
       color: var(--gold);
@@ -470,8 +436,6 @@
       line-height:1.6;
       font-weight: 550;
     }
-    .mcard strong{color:rgba(245,245,245,.92)}
-
     .connector{
       display:flex;
       align-items:center;
@@ -484,9 +448,7 @@
       padding: 0 8px;
     }
 
-    /* =========================
-       GARANTIES
-       ========================= */
+    /* ===== GARANTIES ===== */
     .grid{
       margin-top: 26px;
       display:grid;
@@ -502,13 +464,7 @@
       background: rgba(255,255,255,.05);
       box-shadow: var(--shadow2);
       padding: 22px 20px;
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
       text-align:center;
-    }
-    .gcard:hover{
-      transform: translateY(-4px);
-      border-color: rgba(233,196,106,.24);
-      box-shadow: 0 22px 55px rgba(0,0,0,.58), 0 0 44px rgba(233,196,106,.12);
     }
     .gcard h3{
       margin-top: 10px;
@@ -522,17 +478,14 @@
       font-weight: 550;
     }
 
-    /* =========================
-       SOCIAL + FOOTER
-       ========================= */
+    /* ===== SOCIAL + FOOTER ===== */
     .social-buttons{
       display:flex;
       justify-content:center;
-      gap: 18px;
+      gap: 14px;
       flex-wrap:wrap;
       margin-top: 10px;
     }
-
     footer{
       background:#07090f;
       padding: 30px 8vw;
@@ -548,15 +501,56 @@
     }
     footer a:hover{ color: var(--gold); }
 
-    /* Responsive */
+    /* =========================
+       ✅ MOBILE FIRST FIX (IMPORTANT)
+       ========================= */
     @media (max-width: 900px){
-      .battle-grid{ grid-template-columns: 1fr; }
-      .vs{ margin: 8px auto; }
+      section{
+        padding: 80px 6vw;
+        min-height: auto; /* <-- pas obligé d'être 100vh sur mobile */
+      }
+      .frame{
+        padding: 36px 5vw;
+      }
+      .battle-grid{
+        grid-template-columns: 1fr; /* <-- stack */
+        gap: 18px;
+      }
+      .vs{
+        width: 96px; height: 96px;
+        font-size: 2.6rem;
+      }
+      .flow{
+        flex-direction: column; /* <-- stack */
+        align-items: center;
+      }
+      .arrow{
+        transform: rotate(90deg); /* <-- arrow vertical */
+        margin: 8px auto;
+      }
+      .connector{
+        font-size: 2rem;
+      }
+      .btn{
+        width: 100%;
+        min-width: 0;
+      }
+      .chip{
+        padding: 10px 14px;
+      }
+      .hero{
+        padding: 110px 6vw 70px;
+      }
+      .hero-sub{
+        font-size: 1.12rem;
+      }
     }
-    @media (max-width: 768px){
-      .flow{ flex-direction:column; }
-      .arrow{ transform: rotate(90deg); margin: 6px auto; }
-      .step{ min-width: min(420px, 92vw); }
+
+    @media (max-width: 420px){
+      .booster-img{ width: 150px; }
+      .vs{ width: 88px; height: 88px; font-size: 2.4rem; }
+      .section-lead{ font-size: 1.05rem; }
+      section h2{ font-size: 1.9rem; }
     }
   </style>
 </head>
@@ -567,7 +561,7 @@
   <section class="hero" id="home">
     <h1>GranTesoro</h1>
 
-    <div class="chip-row" aria-label="Navigation sections">
+    <div class="chip-row">
       <a class="chip" href="#battle">⚔️ Battle 1v1</a>
       <a class="chip" href="#mystery">🎁 Mystery Packs</a>
       <a class="chip" href="#concept">🛡️ Nos Garanties</a>
@@ -602,7 +596,7 @@
           <div class="card-head">👤 Joueur A</div>
           <div class="card-body">
             <div class="buy">Achète 1 booster</div>
-            <img class="booster-img" src="./booster-joueurA.png.jpg" alt="Booster OP-13 Successeurs">
+            <img class="booster-img" src="./booster-joueurA.png.webp" alt="Booster OP-13 Successeurs">
             <div class="tag">Booster scellé</div>
           </div>
         </div>
@@ -613,7 +607,7 @@
           <div class="card-head">👤 Joueur B</div>
           <div class="card-body">
             <div class="buy">Achète 1 booster</div>
-            <img class="booster-img" src="./booster-joueurB.png.jpg" alt="Booster EB-03 Heroines">
+            <img class="booster-img" src="./booster-joueurB.png.webp" alt="Booster EB-03 Heroines">
             <div class="tag">Booster scellé</div>
           </div>
         </div>
