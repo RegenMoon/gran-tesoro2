@@ -44,7 +44,7 @@
       background: #000;
     }
 
-    /* ✅ Particules dorées (subtiles) */
+    /* Particules dorées (subtiles) */
     body::before{
       content:"";
       position:fixed; inset:0;
@@ -66,7 +66,7 @@
       100%{ transform: translate3d(-90px,120px,0); }
     }
 
-    /* ✅ Lueurs dorées latérales */
+    /* Lueurs dorées latérales */
     body::after{
       content:"";
       position:fixed; inset:0;
@@ -90,7 +90,6 @@
       gap: 26px;
     }
 
-    /* pas de “bridge” entre sections */
     section::after{ display:none; }
     section:last-of-type::after{display:none;}
 
@@ -230,7 +229,7 @@
     }
 
     /* =========================
-       HERO – TITRE “GRAN TESORO” FIXE (FORCÉ DORÉ COMME LE X)
+       HERO – TITRE “GRAN TESORO” FIXE (DORÉ SIMPLE COMME LE X)
        ========================= */
     .hero{
       min-height: 92vh;
@@ -259,42 +258,31 @@
       padding: 0 10px;
     }
 
-    /* ✅ FIX : doré visible partout (même si background-clip bug) */
+    /* ✅ ICI LA MODIF: doré simple (même rendu que le X) */
     .logo-text{
       position:relative;
       display:inline-block;
-      color: var(--gold);                 /* fallback */
-      -webkit-text-fill-color: transparent;
-
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,.55), transparent 30%),
-        repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 2px, transparent 2px 6px),
-        linear-gradient(180deg, #fff6be 0%, #f2d579 26%, #d4a93c 55%, #b8860b 82%, #fff1a8 100%);
+      background: linear-gradient(180deg, #fff7c2, #d4a93c);
       -webkit-background-clip: text;
       background-clip: text;
-
-      /* contour sombre + relief */
+      color: transparent;
       text-shadow:
-        -1px -1px 0 rgba(0,0,0,.95),
-         1px -1px 0 rgba(0,0,0,.95),
-        -1px  1px 0 rgba(0,0,0,.95),
-         1px  1px 0 rgba(0,0,0,.95),
-         0  2px 0 rgba(0,0,0,.80),
-         0 10px 28px rgba(0,0,0,.82),
-         0  0 24px rgba(233,196,106,.18);
-      filter: saturate(1.08);
+        0 2px 8px rgba(0,0,0,.84),
+        0 0 18px rgba(233,196,106,.18);
     }
 
+    /* Sous-couche sombre = léger relief */
     .logo-text::before{
       content: attr(data-text);
       position:absolute;
       left:0; top:0;
       z-index:-1;
       transform: translate(2px, 2px);
-      color: rgba(0,0,0,.66);
-      filter: blur(.45px);
+      color: rgba(0,0,0,.70);
+      filter: blur(.35px);
     }
 
+    /* Lignes + X (fixes) */
     .logo-divider{
       display:flex;
       align-items:center;
@@ -326,7 +314,7 @@
       position:relative;
     }
 
-    /* ✅ demandé : supprimer les points autour du titre */
+    /* On ne supprime pas dans le HTML, mais on les cache (tu ne voulais plus les points autour) */
     .spark{ display:none !important; }
 
     .hero-sub{
@@ -688,7 +676,6 @@
       .logo-divider span{ width: 90px; }
       .logo-title{ letter-spacing: .08em; }
 
-      /* Flow en colonne + flèches verticales */
       .flow{
         flex-direction: column;
         align-items: center;
@@ -702,7 +689,6 @@
         min-width: 0;
       }
 
-      /* Mystery en colonne */
       .mystery-row{
         flex-direction: column;
         flex-wrap:nowrap;
