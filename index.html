@@ -40,11 +40,11 @@
       color: var(--text);
       overflow-x:hidden;
 
-      /* ✅ DEMANDÉ : fond 100% noir (on enlève l'image) */
+      /* Fond 100% noir profond */
       background: #000;
     }
 
-    /* ✅ DEMANDÉ : petites particules dorées (on garde) */
+    /* ✅ Particules dorées (subtiles) */
     body::before{
       content:"";
       position:fixed; inset:0;
@@ -66,7 +66,7 @@
       100%{ transform: translate3d(-90px,120px,0); }
     }
 
-    /* ✅ DEMANDÉ : lueurs dorées latérales subtiles */
+    /* ✅ Lueurs dorées latérales */
     body::after{
       content:"";
       position:fixed; inset:0;
@@ -90,7 +90,7 @@
       gap: 26px;
     }
 
-    /* ✅ DEMANDÉ : pas de “scission” visible entre sections */
+    /* pas de “bridge” entre sections */
     section::after{ display:none; }
     section:last-of-type::after{display:none;}
 
@@ -230,7 +230,7 @@
     }
 
     /* =========================
-       HERO – TITRE “GRAN TESORO” FIXE (doré métallisé + contour sombre)
+       HERO – TITRE “GRAN TESORO” FIXE (FORCÉ DORÉ COMME LE X)
        ========================= */
     .hero{
       min-height: 92vh;
@@ -259,10 +259,12 @@
       padding: 0 10px;
     }
 
-    /* ✅ DEMANDÉ : doré + métallisé + relief + "bordure" sombre (noire) */
+    /* ✅ FIX : doré visible partout (même si background-clip bug) */
     .logo-text{
       position:relative;
       display:inline-block;
+      color: var(--gold);                 /* fallback */
+      -webkit-text-fill-color: transparent;
 
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,.55), transparent 30%),
@@ -270,7 +272,6 @@
         linear-gradient(180deg, #fff6be 0%, #f2d579 26%, #d4a93c 55%, #b8860b 82%, #fff1a8 100%);
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent;
 
       /* contour sombre + relief */
       text-shadow:
@@ -280,11 +281,10 @@
          1px  1px 0 rgba(0,0,0,.95),
          0  2px 0 rgba(0,0,0,.80),
          0 10px 28px rgba(0,0,0,.82),
-         0  0 28px rgba(233,196,106,.20);
-      filter: saturate(1.06);
+         0  0 24px rgba(233,196,106,.18);
+      filter: saturate(1.08);
     }
 
-    /* Sous-couche sombre = relief */
     .logo-text::before{
       content: attr(data-text);
       position:absolute;
@@ -295,7 +295,6 @@
       filter: blur(.45px);
     }
 
-    /* Lignes + X (fixes) */
     .logo-divider{
       display:flex;
       align-items:center;
@@ -327,7 +326,7 @@
       position:relative;
     }
 
-    /* ✅ DEMANDÉ : supprimer les points autour du titre -> on neutralise spark */
+    /* ✅ demandé : supprimer les points autour du titre */
     .spark{ display:none !important; }
 
     .hero-sub{
@@ -779,7 +778,6 @@
     <div class="frame">
       <h2 class="display-title">⚔️ Battle 1v1 ⚔️</h2>
 
-      <!-- ✅ demandé : sous-titre en gris + PAS de gras sur "duel d’ouverture" -->
       <p class="section-lead muted">
         Venez vous affronter dans un duel d’ouverture afin de tenter d’emporter le trésor.
       </p>
