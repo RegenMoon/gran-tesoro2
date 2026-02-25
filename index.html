@@ -40,14 +40,11 @@
       color: var(--text);
       overflow-x:hidden;
 
-      /* ✅ Fond image + profondeur (noir + or) */
-      background:
-        radial-gradient(circle at 50% 12%, rgba(233,196,106,.14), transparent 58%),
-        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.80)),
-        url("./background-grantesoro.jpg.png") center top / cover no-repeat fixed;
+      /* ✅ DEMANDÉ : fond 100% noir (on enlève l'image) */
+      background: #000;
     }
 
-    /* ✅ étoiles / grain premium */
+    /* ✅ DEMANDÉ : petites particules dorées (on garde) */
     body::before{
       content:"";
       position:fixed; inset:0;
@@ -69,6 +66,18 @@
       100%{ transform: translate3d(-90px,120px,0); }
     }
 
+    /* ✅ DEMANDÉ : lueurs dorées latérales subtiles */
+    body::after{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:0;
+      background:
+        radial-gradient(ellipse at left center, rgba(233,196,106,.10), transparent 60%),
+        radial-gradient(ellipse at right center, rgba(233,196,106,.10), transparent 60%);
+      opacity:.75;
+    }
+
     /* ===== Layout Sections ===== */
     section{
       position:relative;
@@ -81,18 +90,8 @@
       gap: 26px;
     }
 
-    /* Petit bridge (pas de “lignes” moches) */
-    section::after{
-      content:"";
-      position:absolute;
-      left:0; right:0;
-      bottom:-70px;
-      height:140px;
-      pointer-events:none;
-      z-index:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.32), rgba(0,0,0,0));
-      opacity:.18;
-    }
+    /* ✅ DEMANDÉ : pas de “scission” visible entre sections */
+    section::after{ display:none; }
     section:last-of-type::after{display:none;}
 
     /* ===== Typo ===== */
@@ -231,7 +230,7 @@
     }
 
     /* =========================
-       HERO – TITRE “GRAN TESORO” FIXE (doré métallisé + relief)
+       HERO – TITRE “GRAN TESORO” FIXE (doré métallisé + contour sombre)
        ========================= */
     .hero{
       min-height: 92vh;
@@ -260,7 +259,7 @@
       padding: 0 10px;
     }
 
-    /* Texte OR métallisé + relief (FIXE, pas de mouvement) */
+    /* ✅ DEMANDÉ : doré + métallisé + relief + "bordure" sombre (noire) */
     .logo-text{
       position:relative;
       display:inline-block;
@@ -273,10 +272,15 @@
       background-clip: text;
       color: transparent;
 
+      /* contour sombre + relief */
       text-shadow:
-        0 2px 0 rgba(0,0,0,.72),
-        0 10px 28px rgba(0,0,0,.82),
-        0 0 28px rgba(233,196,106,.20);
+        -1px -1px 0 rgba(0,0,0,.95),
+         1px -1px 0 rgba(0,0,0,.95),
+        -1px  1px 0 rgba(0,0,0,.95),
+         1px  1px 0 rgba(0,0,0,.95),
+         0  2px 0 rgba(0,0,0,.80),
+         0 10px 28px rgba(0,0,0,.82),
+         0  0 28px rgba(233,196,106,.20);
       filter: saturate(1.06);
     }
 
@@ -323,28 +327,8 @@
       position:relative;
     }
 
-    /* petites étincelles autour (fixes) */
-    .spark{
-      position:absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(233,196,106,.95);
-      box-shadow: 0 0 22px rgba(233,196,106,.55);
-      opacity:.55;
-      filter: blur(.2px);
-      animation: sparkTwinkle 2.6s ease-in-out infinite;
-      pointer-events:none;
-    }
-    .spark.s1{ left: -18px; top: 10px; animation-delay:.2s; }
-    .spark.s2{ right: -14px; top: 16px; animation-delay:1.0s; }
-    .spark.s3{ left: 22%; top: -10px; width:6px;height:6px; animation-delay:1.6s; opacity:.45;}
-    .spark.s4{ right: 20%; top: -8px; width:6px;height:6px; animation-delay:.6s; opacity:.40;}
-
-    @keyframes sparkTwinkle{
-      0%,100%{ transform: scale(.9); opacity:.35; }
-      50%{ transform: scale(1.15); opacity:.70; }
-    }
+    /* ✅ DEMANDÉ : supprimer les points autour du titre -> on neutralise spark */
+    .spark{ display:none !important; }
 
     .hero-sub{
       margin: 18px auto 6px;
@@ -795,9 +779,9 @@
     <div class="frame">
       <h2 class="display-title">⚔️ Battle 1v1 ⚔️</h2>
 
-      <!-- ✅ demandé : sous-titre en gris -->
+      <!-- ✅ demandé : sous-titre en gris + PAS de gras sur "duel d’ouverture" -->
       <p class="section-lead muted">
-        Venez vous affronter dans un <strong>duel d’ouverture</strong> afin de tenter d’emporter le trésor.
+        Venez vous affronter dans un duel d’ouverture afin de tenter d’emporter le trésor.
       </p>
 
       <div class="battle-grid">
@@ -894,7 +878,6 @@
     <div class="frame">
       <h2 class="display-title">🛡️ Nos Garanties 🛡️</h2>
 
-      <!-- ✅ demandé : sous-titre en gris -->
       <p class="section-lead muted">
         Des ouvertures en live, des règles claires et une transparence totale.
       </p>
